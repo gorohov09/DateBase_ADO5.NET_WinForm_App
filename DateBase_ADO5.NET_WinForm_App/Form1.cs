@@ -45,6 +45,71 @@ namespace DateBase_ADO5.NET_WinForm_App
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = $"INSERT INTO Student VALUES (N'{textFirstName.Text}',N'{textLastName.Text}','{textAveScore.Text}')";
+            if (textFirstName.Text == "" || textLastName.Text == "" || textAveScore.Text == "")
+            {
+                MessageBox.Show("Вы оставили пустыми поля", "Сообщение", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                con.Close();
+                return;
+            }
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GetList();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            if ((textFirstName.Text != "") && (textLastName.Text != "") && (textAveScore.Text != ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET FirstName = N'{textFirstName.Text}', LastName = N'{textLastName.Text}', AverageScore = N'{textAveScore.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text != "") && (textLastName.Text != "") && (textAveScore.Text == ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET FirstName = N'{textFirstName.Text}', LastName = N'{textLastName.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text != "") && (textLastName.Text == "") && (textAveScore.Text != ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET FirstName = N'{textFirstName.Text}', AverageScore = N'{textAveScore.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text == "") && (textLastName.Text != "") && (textAveScore.Text != ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET LastName = N'{textLastName.Text}', AverageScore = N'{textAveScore.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text == "") && (textLastName.Text == "") && (textAveScore.Text != ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET AverageScore = N'{textAveScore.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text == "") && (textLastName.Text != "") && (textAveScore.Text == ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET LastName = N'{textLastName.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else if ((textFirstName.Text != "") && (textLastName.Text == "") && (textAveScore.Text == ""))
+            {
+                cmd.CommandText = $"UPDATE Student " +
+                              $"SET FirstName = N'{textLastName.Text}' " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else
+            {
+                MessageBox.Show("Вы оставили пустыми поля", "Сообщение", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                con.Close();
+                return;
+            }
+            
             cmd.ExecuteNonQuery();
             con.Close();
             GetList();

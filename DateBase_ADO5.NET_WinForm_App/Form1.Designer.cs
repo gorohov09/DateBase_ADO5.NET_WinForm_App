@@ -169,6 +169,7 @@ namespace DateBase_ADO5.NET_WinForm_App
             this.buttonUpdate.TabIndex = 13;
             this.buttonUpdate.Text = "Изменить";
             this.buttonUpdate.UseVisualStyleBackColor = false;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // Form1
             // 
