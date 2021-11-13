@@ -157,6 +157,7 @@ namespace DateBase_ADO5.NET_WinForm_App
             this.buttonDelete.TabIndex = 12;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonUpdate
             // 

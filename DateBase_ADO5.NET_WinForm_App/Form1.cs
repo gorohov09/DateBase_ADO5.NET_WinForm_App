@@ -114,5 +114,25 @@ namespace DateBase_ADO5.NET_WinForm_App
             con.Close();
             GetList();
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            if (textId.Text != "")
+            {
+                cmd.CommandText = "DELETE FROM Student " +
+                              $"WHERE StudentId = {textId.Text}";
+            }
+            else
+            {
+                MessageBox.Show("Вы оставили пустым поле - Id", "Сообщение", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                con.Close();
+            }
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GetList();
+        }
     }
 }
