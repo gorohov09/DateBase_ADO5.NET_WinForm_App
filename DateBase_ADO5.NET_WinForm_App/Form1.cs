@@ -38,5 +38,16 @@ namespace DateBase_ADO5.NET_WinForm_App
         {
             GetList();
         }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = $"INSERT INTO Student VALUES (N'{textFirstName.Text}',N'{textLastName.Text}','{textAveScore.Text}')";
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GetList();
+        }
     }
 }

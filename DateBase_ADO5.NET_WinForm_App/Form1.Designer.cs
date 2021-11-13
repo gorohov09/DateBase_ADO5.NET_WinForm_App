@@ -144,6 +144,7 @@ namespace DateBase_ADO5.NET_WinForm_App
             this.buttonInsert.TabIndex = 11;
             this.buttonInsert.Text = "Добавить";
             this.buttonInsert.UseVisualStyleBackColor = false;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // buttonDelete
             // 
